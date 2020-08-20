@@ -17,6 +17,6 @@ const deleteCollection = async (d) => {
   }
 };
 
-deleteCollection();
+// deleteCollection();
 
 module.exports = deleteCollection; 
