@@ -8,35 +8,23 @@ const deleteCollection = require('./payever/delete_collection/delete_collection'
 
 
 async function main() {
-  
-  var driver = await new Builder().forBrowser('chrome').build();
 
   try {
-  
-  
+
     // Add Collection 
-    await logIn(driver); 
-    await driver.manage().setTimeouts( { implicit: 10000 } );
-    
-    await addCollection(driver);
-    let close_button = driver.actions().sendKeys(Key.ESCAPE);
-    await close_button.perform();
+    await addCollection();
 
-    // Edit Collection
-    await editCollection(driver);
-    await close_button.perform();
-   
+    // // Edit Collection
+    await editCollection();
 
-    // Add Products
-    await addProducts(driver);
-    await close_button.perform();
+    // // Add Products
+    await addProducts();
 
-    // Delete Coleection
-    await deleteCollection(driver);
-    await close_button.perform();
+    // // Delete Coleection
+    await deleteCollection();
 
   } finally {
-     await driver.quit();
+
   }
 };
 

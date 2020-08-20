@@ -1,21 +1,22 @@
-const { By } = require('selenium-webdriver');
+const { Builder, By } = require('selenium-webdriver');
+const logIn = require('../login/login');
 
 const deleteCollection = async (d) => {
 
-  let driver = d;
+  var driver = await new Builder().forBrowser('chrome').build();
 
   try {
+	  await logIn(driver); 
     await driver.findElement(By.xpath("//mat-button-toggle[@ng-reflect-value='collections']")).click();
     await driver.findElement(By.xpath("//button[@id='mat-button-toggle-2-button']/div")).click();
-    await driver.findElement(By.xpath("//input[@id='mat-checkbox-21-input']")).click();
-		await driver.findElement(By.xpath("//div[@id='micro-content']/app-products-standalone/app-products-list/pf-products-list/pe-data-grid-layout/div[2]/pe-data-grid-select-bar/mat-toolbar/div[2]/button[3]/span/span")).click();
-		await driver.findElement(By.xpath("//div[@id='micro-content']/app-products-standalone/ng-component/pe-info-box-confirm/pe-info-box/div/mat-card/mat-card-content/div/div/div/div/button[2]/span")).click();
-  }
+    await driver.findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-8']/label/div")).click();
+		await driver.findElement(By.xpath("//div[2]/button[3]/span/span")).click();
+		await driver.findElement(By.xpath("//button[2]/span")).click();  }
    finally {
-    // await driver.quit();
+    await driver.quit();
   }
 };
 
-// deleteCollection();
+deleteCollection();
 
 module.exports = deleteCollection; 
